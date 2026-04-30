@@ -1,14 +1,13 @@
-# Unscramble.it - Lexical Processing Engine
+# Word Puzzle Solver — Multi-Constraint Lexical Engine
 
-A high-performance English word unscrambler built with React and TypeScript. This application uses a pre-indexed dictionary of over 370,000 words to find anagrams in milliseconds.
+A high-performance smart word solver built with React and TypeScript. Designed for puzzle enthusiasts, NYT Crossword solvers, and Wordle players.
 
-## Features
-
+## Core Features
+- **Constraints Engine**: Filter by length, known letters (scrambled), and excluded characters.
+- **Position Pinning**: Lock letters into specific slots for instant refinement.
 - **Blazing Fast**: Local browser-based lookup with zero server latency.
-- **Brutalist Design**: A bold, distinctive UI that stands out.
-- **Comprehensive Lexicon**: Indexed by word length and character frequency.
-- **Privacy First**: No personal data collection, designed for AdSense compliance.
-- **Mobile Responsive**: Fully adaptive layout for all devices.
+- **Offline Ready**: Dictionary cached locally for uninterrupted play.
+- **AdSense Optimized**: Privacy-first design with all legal-required pages.
 
 ## Local Setup
 

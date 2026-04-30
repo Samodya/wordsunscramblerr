@@ -7,6 +7,7 @@ export default function Header() {
 
   const navLinks = [
     { to: '/', label: 'Unscramble' },
+    { to: '/how-it-works', label: 'How It Works' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
   ];
@@ -19,7 +20,7 @@ export default function Header() {
             <Zap fill="black" size={24} />
           </div>
           <span className="font-display text-3xl tracking-tighter uppercase leading-none">
-            UNSCRAMBLE<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">.it</span>
+            PUZZLE<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">SOLVER</span>
           </span>
         </NavLink>
 

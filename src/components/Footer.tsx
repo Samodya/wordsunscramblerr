@@ -8,16 +8,17 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div className="space-y-4">
           <Link to="/" className="font-display text-4xl uppercase tracking-tighter">
-            UNSCRAMBLE<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">.it</span>
+            PUZZLE<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">SOLVER</span>
           </Link>
           <p className="font-mono text-xs opacity-60 max-w-xs leading-relaxed uppercase">
-            The world's fastest English word indexing and unscrambling engine. Built for velocity and lexical accuracy.
+            The world's fastest multi-constraint lexical engine. Built for Wordle, Crypto, and word puzzle mastery.
           </p>
         </div>
 
         <div className="space-y-4">
           <h3 className="font-display text-lg uppercase underline decoration-neon decoration-4 underline-offset-4">Resources</h3>
           <ul className="font-mono text-sm space-y-2 uppercase">
+            <li><Link to="/how-it-works" className="hover:text-neon transition-colors">How It Works</Link></li>
             <li><Link to="/about" className="hover:text-neon transition-colors">About Us</Link></li>
             <li><Link to="/contact" className="hover:text-neon transition-colors">Contact Support</Link></li>
             <li><Link to="/" className="hover:text-neon transition-colors">Word Tool</Link></li>
@@ -35,7 +36,7 @@ export default function Footer() {
 
       <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-brutal-black/10">
         <p className="font-mono text-[10px] opacity-40 uppercase">
-          © {currentYear} UNSCRAMBLE.IT. ALL RIGHTS RESERVED.
+          © {currentYear} PUZZLE SOLVER. ALL RIGHTS RESERVED.
         </p>
         <div className="flex gap-4">
           <div className="w-4 h-4 bg-neon border border-brutal-black" />

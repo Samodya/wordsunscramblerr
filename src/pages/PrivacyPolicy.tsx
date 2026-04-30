@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
         <section className="space-y-4">
           <h2 className="font-display text-3xl text-brutal-black border-l-4 border-neon pl-4">1. Data Identification</h2>
           <p className="leading-relaxed">
-            Unscramble.it is built with a "Privacy First" architecture. We do not require account creation, and we do not store your name, address, or phone number. Any letters you input into our tool are processed locally in your browser and are never transmitted to our permanent storage servers.
+            Word Puzzle Solver is built with a "Privacy First" architecture. We do not require account creation, and we do not store your name, address, or phone number. Any letters or word constraints you input into our tool are processed locally in your browser and are never transmitted to our remote servers.
           </p>
         </section>
 

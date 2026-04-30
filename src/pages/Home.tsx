@@ -1,31 +1,32 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { useUnscrambler } from '../hooks/useUnscrambler';
+import { usePuzzleSolver } from '../hooks/usePuzzleSolver';
 import { usePositionFilter } from '../hooks/usePositionFilter';
-import LetterInput from '../components/LetterInput';
+import SolverInputs from '../components/SolverInputs';
 import PositionFilters from '../components/PositionFilters';
 import ResultsGrid from '../components/ResultsGrid';
 import EmptyState from '../components/EmptyState';
-import { Loader2 } from 'lucide-react';
+import HowItWorksSection from '../components/HowItWorksSection';
+import { Loader2, Target, History } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const { results: baseResults, isLoading, isDictionaryLoading, error, unscramble, reset: baseReset } = useUnscrambler();
+  const { results: baseResults, isLoading, isDictionaryLoading, error, solve, reset: baseReset } = usePuzzleSolver();
   const [currentWordLength, setCurrentWordLength] = useState(0);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   
   const { filteredResults, filters, updateFilter, clearFilters } = usePositionFilter(baseResults, currentWordLength);
 
   useEffect(() => {
-    document.title = "Unscramble.it - Word Anagram Solver";
+    document.title = "Word Puzzle Solver — Find Words by Letters & Constraints";
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Instantly unscramble letters to find all valid English words. High-speed anagram solver with position filters and massive lexical database.');
+    if (meta) meta.setAttribute('content', 'Solve word puzzles using known scrambled letters, exact word length, and excluded letters. Perfect for Crypto and Wordle.');
   }, []);
 
-  const handleUnscramble = (input: string) => {
-    setCurrentWordLength(input.replace(/[^a-zA-Z]/g, '').length);
+  const handleSolve = (length: number, known: string, excluded: string) => {
+    setCurrentWordLength(length);
     setIsFirstLoad(true);
     clearFilters();
-    unscramble(input);
+    solve(length, known, excluded);
   };
 
   const handleReset = () => {
@@ -35,76 +36,79 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-12">
+    <div className="max-w-6xl mx-auto space-y-16">
       {/* Hero Section */}
-      <section className="space-y-4">
-        <h2 className="font-display text-4xl sm:text-6xl tracking-tighter uppercase leading-none border-l-8 border-neon pl-6 py-2">
-          Find the Words Hidden in Your Chaos
-        </h2>
-        <p className="font-mono text-sm uppercase opacity-60">
-          Enter up to 15 letters and discover every valid English anagram in our massive lexical index.
+      <section className="space-y-6 text-center lg:text-left">
+        <div className="inline-flex items-center gap-2 bg-black text-neon px-3 py-1 font-mono text-[10px] uppercase font-bold brutal-border shadow-none">
+          <History size={12} />
+          <span>Real-time Lexical Engine v2.0</span>
+        </div>
+        <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-tighter uppercase leading-none">
+          Find Any Word <br />
+          <span className="text-neon drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">With Smart Constraints</span>
+        </h1>
+        <p className="font-mono text-sm sm:text-base uppercase opacity-60 max-w-2xl leading-relaxed">
+          The ultimate utility for <span className="text-black font-bold">Crypto Word of the Day</span>, 
+          <span className="text-black font-bold"> Wordle</span>, and competitive crosswords. 
+          Combine length filters, scrambled pools, and position pins.
         </p>
       </section>
 
-      {/* Main Content */}
-      <main className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* Input Column */}
-        <section className="lg:col-span-5 space-y-8">
+      {/* Main Tool Area */}
+      <main className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Left Column: Input Panel */}
+        <section className="lg:col-span-5 space-y-8 sticky top-24">
           <div className="space-y-4">
-            <label className="font-display text-xl uppercase flex items-center gap-2">
-              <span className="w-8 h-8 bg-black text-white flex items-center justify-center text-sm">01</span>
-              Seed Letters
-            </label>
-            <LetterInput 
-              onUnscramble={handleUnscramble} 
+            <div className="flex items-center gap-3 font-display text-2xl uppercase">
+              <div className="w-10 h-10 bg-black text-white flex items-center justify-center">01</div>
+              <span>Control Panel</span>
+            </div>
+            
+            <SolverInputs 
+              onSolve={handleSolve} 
               onClear={handleReset}
               isLoading={isLoading}
               disabled={isDictionaryLoading}
             />
+
             {error && (
               <motion.div 
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="bg-red-400 p-3 brutal-border shadow-none font-mono text-xs font-bold uppercase"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-red-400 p-4 brutal-border shadow-none font-mono text-xs font-bold uppercase flex items-center gap-2"
               >
-                ERROR: {error}
+                <div className="bg-black text-white px-1">ERR</div>
+                <span>{error}</span>
               </motion.div>
             )}
           </div>
 
           {isDictionaryLoading && (
-            <div className="flex items-center gap-3 font-mono text-xs uppercase bg-black text-white p-4 brutal-border shadow-none">
+            <div className="flex items-center gap-3 font-mono text-xs uppercase bg-black text-white p-4 brutal-border shadow-none animate-pulse">
               <Loader2 className="animate-spin" size={16} />
-              Indexing Dictionary Assets...
+              <span>Hydrating Lexicon Assets...</span>
             </div>
           )}
-
-          <div className="hidden lg:block p-6 brutal-border bg-neon/10 space-y-4">
-            <h3 className="font-display text-lg uppercase">System Specs</h3>
-            <ul className="font-mono text-xs space-y-2 opacity-70">
-              <li>• EXACT LENGTH MATCHING</li>
-              <li>• CHARACTER FREQUENCY COMPARISON</li>
-              <li>• CASE INSENSITIVE ENCODING</li>
-              <li>• DUPLICATE LETTER TOLERANCE</li>
-            </ul>
-          </div>
         </section>
 
-        {/* Results Column */}
+        {/* Right Column: Output & Refinement */}
         <section className="lg:col-span-7 space-y-8">
           <div className="space-y-4">
-            <label className="font-display text-xl uppercase flex items-center gap-2">
-              <span className="w-8 h-8 bg-black text-white flex items-center justify-center text-sm">02</span>
-              Output Stream
-            </label>
+            <div className="flex items-center gap-3 font-display text-2xl uppercase">
+              <div className="w-10 h-10 bg-black text-white flex items-center justify-center">02</div>
+              <span>Filtered Stream</span>
+            </div>
             
             {isLoading ? (
-              <div className="h-64 flex flex-col items-center justify-center brutal-border bg-white space-y-4">
-                <div className="w-12 h-12 border-8 border-brutal-black border-t-neon animate-spin" />
-                <p className="font-display text-xl uppercase animate-pulse">Processing Lexicon...</p>
+              <div className="h-64 flex flex-col items-center justify-center brutal-border bg-white space-y-6">
+                <div className="relative">
+                  <div className="w-16 h-16 border-8 border-brutal-black border-t-neon animate-spin" />
+                  <Target size={24} className="absolute inset-0 m-auto animate-pulse" />
+                </div>
+                <p className="font-display text-2xl uppercase tracking-widest animate-pulse">Scanning Index...</p>
               </div>
             ) : baseResults.length > 0 ? (
-              <div className="space-y-8">
+              <div className="space-y-12">
                 <PositionFilters 
                   length={currentWordLength}
                   filters={filters}
@@ -115,7 +119,7 @@ export default function Home() {
                 <AnimatePresence mode="wait">
                   {filteredResults.length > 0 ? (
                     <motion.div
-                      key="results"
+                      key="results-grid"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -125,24 +129,27 @@ export default function Home() {
                     </motion.div>
                   ) : (
                     <motion.div
-                      key="empty-filter"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
+                      key="empty-filter-state"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
                     >
-                      <EmptyState message="No words match your filters. Try clearing a position." />
+                      <EmptyState message="No candidates match your pinning pattern. Adjust letters or clear slots." />
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ) : (
               <EmptyState 
-                message={error ? "VALIDATION FAILED" : !isDictionaryLoading ? "READY FOR INPUT" : "WAITING FOR ASSETS..."} 
+                message={!isDictionaryLoading ? "READY FOR COORDINATES" : "INITIALIZING SYSTEM..."} 
               />
             )}
           </div>
         </section>
       </main>
+
+      {/* Instructions Section */}
+      <HowItWorksSection />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Unscramble.it",
-  "description": "A high-speed English word unscrambler with a bold, modern interface. Find every valid anagram and word from your letters instantly.",
+  "name": "Word Puzzle Solver",
+  "description": "The ultimate tool for solving Wordle, Crypto, and word puzzles. Find words by length, known letters, and exclusions with smart position pins.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
