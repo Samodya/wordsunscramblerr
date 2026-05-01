@@ -20,7 +20,7 @@ export default function Header() {
             <Zap fill="black" size={24} />
           </div>
           <span className="font-display text-3xl tracking-tighter uppercase leading-none">
-            PUZZLE<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">SOLVER</span>
+            WORD<span className="text-neon drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">UNSCRAMBLER</span>
           </span>
         </NavLink>
 

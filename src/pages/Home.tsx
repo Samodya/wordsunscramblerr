@@ -17,9 +17,9 @@ export default function Home() {
   const { filteredResults, filters, updateFilter, clearFilters } = usePositionFilter(baseResults, currentWordLength);
 
   useEffect(() => {
-    document.title = "Word Puzzle Solver — Find Words by Letters & Constraints";
+    document.title = "Word Unscrambler — Find Words by Letters & Constraints";
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', 'Solve word puzzles using known scrambled letters, exact word length, and excluded letters. Perfect for Crypto and Wordle.');
+    if (meta) meta.setAttribute('content', 'Instantly unscramble letters and solve word puzzles using known letters, length filters, and position pinning. Optimized for Wordle & Crypto.');
   }, []);
 
   const handleSolve = (length: number, known: string, excluded: string) => {

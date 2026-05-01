@@ -1,6 +1,6 @@
 {
-  "name": "Word Puzzle Solver",
-  "description": "The ultimate tool for solving Wordle, Crypto, and word puzzles. Find words by length, known letters, and exclusions with smart position pins.",
+  "name": "Word Unscrambler & Solver",
+  "description": "Premium word unscrambler and puzzle solver. Find any word by letters, length, and exclusions with advanced position pinning. Perfect for Wordle and Crypto.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
