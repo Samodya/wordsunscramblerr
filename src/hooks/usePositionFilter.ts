@@ -9,7 +9,7 @@ export function usePositionFilter(baseResults: string[], wordLength: number) {
     return baseResults.filter((word) => {
       return Object.entries(filters).every(([pos, char]) => {
         const index = parseInt(pos) - 1;
-        return word[index] === char.toUpperCase();
+        return word[index] === (char as string).toUpperCase();
       });
     });
   }, [baseResults, filters]);

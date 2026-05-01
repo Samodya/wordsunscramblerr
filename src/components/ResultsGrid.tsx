@@ -20,7 +20,7 @@ export default function ResultsGrid({ words, isFirstLoad = false }: ResultsGridP
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {words.map((word, index) => (
-          <WordCard key={word} word={word} index={index} stagger={isFirstLoad} />
+          <WordCard key={`${word}-${index}`} word={word} index={index} stagger={isFirstLoad} />
         ))}
       </div>
     </div>

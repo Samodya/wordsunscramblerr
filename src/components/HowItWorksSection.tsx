@@ -18,7 +18,7 @@ export default function HowItWorksSection() {
     {
       id: '03',
       title: 'Explore Results',
-      desc: 'Browse the grid of valid words. Use position filters to narrow down the perfect play.',
+      desc: 'Browse the grid of valid words. Use position filters to narrow down the perfect plays.',
       example: 'STEAL, TALES...'
     }
   ];
