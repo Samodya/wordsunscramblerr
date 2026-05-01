@@ -57,7 +57,7 @@ export default function Home() {
       {/* Main Tool Area */}
       <main className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Left Column: Input Panel */}
-        <section className="lg:col-span-5 space-y-8 sticky top-24">
+        <section className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
           <div className="space-y-4">
             <div className="flex items-center gap-3 font-display text-2xl uppercase">
               <div className="w-10 h-10 bg-black text-white flex items-center justify-center">01</div>
